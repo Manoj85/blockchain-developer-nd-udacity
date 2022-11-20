@@ -1,0 +1,18 @@
+{
+  "name": "1_16-remix-deployment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "web3",
+    "ganache"
+  ],
+  "author": "Manoj85",
+  "license": "ISC",
+  "dependencies": {
+    "web3": "^1.8.1"
+  }
+}
