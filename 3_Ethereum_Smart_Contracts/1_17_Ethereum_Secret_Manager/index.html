@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Deploy a Remix Contract</title>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <h1>Ethereum Secret Messenger</h1>
+        <hr>
+
+        <label for="message">This site writes a secret message to the Ethereum blockchain!</label>
+        <input id="userInput" type="text">
+
+        <button id="setMessageButton">Set secret message</button>
+    </div>
+
+    <script>
+
+        // Connect a the web3 provider
+        if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+        } else {
+            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+        }
+
+        const accounts = web3.eth.getAccounts();
+        const senderAccount = '0x64af8F5dF29e3BDAdf67ccc68cDD2734088caaB0'; // accounts[0]
+
+        // Set a default account
+        web3.eth.defaultAccount = senderAccount;
+        console.log(senderAccount);
+
+        const abi_value = [
+          {
+            "inputs": [
+              {
+                "internalType": "string",
+                "name": "x",
+                "type": "string"
+              }
+            ],
+            "name": "setMessage",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+          },
+          {
+            "inputs": [],
+            "name": "getMessage",
+            "outputs": [
+              {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+              }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+          }
+        ];
+        const contract_address = '0x8EA13bAacE7F6956ae35A3c7D649ac84478cE70B';
+
+        // Get the contract address
+        // var RemixContract = web3.eth.contract(CONTRACT-ABI-HERE);
+
+        // Get the contract abi
+        var RemixContract = new web3.eth.Contract(abi_value, contract_address);
+
+        console.log(RemixContract);
+
+        document.getElementById("setMessageButton").onclick = () => {
+          let message = document.getElementById("userInput").value.toString();
+          console.log(`Input message = ${message}`)
+
+          RemixContract.methods.setMessage(message).send({ from: senderAccount });
+          
+        };
+
+    </script>
+</body>
+
+</html>
