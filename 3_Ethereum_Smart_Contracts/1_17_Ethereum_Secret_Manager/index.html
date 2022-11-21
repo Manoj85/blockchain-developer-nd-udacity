@@ -35,6 +35,8 @@
         const accounts = web3.eth.getAccounts();
         const senderAccount = '0x64af8F5dF29e3BDAdf67ccc68cDD2734088caaB0'; // accounts[0]
 
+        console.log(`accounts[0] = ${accounts[0]}`);
+
         // Set a default account
         web3.eth.defaultAccount = senderAccount;
         console.log(senderAccount);
@@ -67,7 +69,11 @@
             "type": "function"
           }
         ];
-        const contract_address = '0x8EA13bAacE7F6956ae35A3c7D649ac84478cE70B';
+        // Deployed to Ganache provider
+        // const contract_address = '0x8EA13bAacE7F6956ae35A3c7D649ac84478cE70B';
+
+        // Deployed to Integrated Metamask
+        const contract_address = '0x770eC408F9A84939E14f6C6485adfD2467B466c7';
 
         // Get the contract address
         // var RemixContract = web3.eth.contract(CONTRACT-ABI-HERE);
