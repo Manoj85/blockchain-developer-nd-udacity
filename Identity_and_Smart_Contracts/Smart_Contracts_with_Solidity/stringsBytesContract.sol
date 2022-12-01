@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.17;
+pragma solidity >=0.8.17;
 
 contract StringBytes {
     // Static byte arrays, Both declarations will create array with 3 byte elements
@@ -7,9 +7,11 @@ contract StringBytes {
                             //it wastes 31 bytes of space for each element (except in storage). 
                             //It is better to use the bytes type instead.
     bytes3 bytes3Array;
+
     // Dynamic bytes arrays
     bytes1[] dynamicByteArray;
     bytes bytesArray;
+
     // String variable
     string    string1 = "testing";
 
